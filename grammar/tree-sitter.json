@@ -1,0 +1,21 @@
+{
+  "grammars": [
+    {
+      "name": "nebra",
+      "camelcase": "Nebra",
+      "scope": "source.nebra",
+      "path": ".",
+      "file-types": ["neb"],
+      "highlights": "../languages/nebra/highlights.scm",
+      "injection-regex": "^nebra$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Nebra grammar for tree-sitter",
+    "links": {
+      "repository": "https://github.com/nebra-lang/zed-nebra"
+    }
+  }
+}

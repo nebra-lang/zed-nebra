@@ -1,0 +1,5 @@
+/target
+*.wasm
+grammar/node_modules
+grammar/build
+grammars/

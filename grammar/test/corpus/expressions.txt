@@ -1,0 +1,265 @@
+======================================================================
+Interpolated strings
+======================================================================
+
+print(`Hi {user.name}, {count + 1} {`nested {x}`}`)
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (call_statement
+      (function_call
+        (variable
+          (identifier))
+        (arguments
+          (template_string
+            (string_content)
+            (interpolation
+              (variable
+                (dot_index_expression
+                  (variable
+                    (identifier))
+                  (property_identifier))))
+            (string_content)
+            (interpolation
+              (binary_expression
+                (variable
+                  (identifier))
+                (number)))
+            (string_content)
+            (interpolation
+              (template_string
+                (string_content)
+                (interpolation
+                  (variable
+                    (identifier)))))))))))
+
+======================================================================
+Long strings and comments
+======================================================================
+
+--[==[ block ]==]
+local s = [[long
+string]] -- trailing
+--- doc comment
+
+----------------------------------------------------------------------
+
+(source_file
+  (block_comment)
+  (block
+    (local_declaration
+      (local_name
+        (identifier))
+      (string
+        (string_content))))
+  (comment)
+  (comment))
+
+======================================================================
+Operators
+======================================================================
+
+local a = x ?? y and not z or -w .. "s" ^ 2
+local b = x >> 1 << 2 & 3 | 4 ~ 5
+local c = value as number is string
+local d = o instanceof Box
+local e = typeof v
+count++
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (local_declaration
+      (local_name
+        (identifier))
+      (binary_expression
+        (binary_expression
+          (variable
+            (identifier))
+          (binary_expression
+            (variable
+              (identifier))
+            (unary_expression
+              (variable
+                (identifier)))))
+        (binary_expression
+          (unary_expression
+            (variable
+              (identifier)))
+          (binary_expression
+            (string
+              (string_content))
+            (number)))))
+    (local_declaration
+      (local_name
+        (identifier))
+      (binary_expression
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (variable
+                (identifier))
+              (number))
+            (number))
+          (number))
+        (binary_expression
+          (number)
+          (number))))
+    (local_declaration
+      (local_name
+        (identifier))
+      (type_check_expression
+        (cast_expression
+          (variable
+            (identifier))
+          (type_identifier))
+        (type_identifier)))
+    (local_declaration
+      (local_name
+        (identifier))
+      (instanceof_expression
+        (variable
+          (identifier))
+        (type_identifier)))
+    (local_declaration
+      (local_name
+        (identifier))
+      (typeof_expression
+        (variable
+          (identifier))))
+    (call_statement
+      (update_expression
+        (variable
+          (identifier))))))
+
+======================================================================
+Calls, members and non-nil
+======================================================================
+
+obj:method(1)?.field!.x[1](2)
+f "str"
+f { a = 1 }
+local n = new Box(1)
+local t = 1.hours
+super:init()
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (call_statement
+      (function_call
+        (variable
+          (bracket_index_expression
+            (variable
+              (dot_index_expression
+                (non_nil_expression
+                  (variable
+                    (dot_index_expression
+                      (function_call
+                        (method_index_expression
+                          (variable
+                            (identifier))
+                          (property_identifier))
+                        (arguments
+                          (number)))
+                      (property_identifier))))
+                (property_identifier)))
+            (number)))
+        (arguments
+          (number))))
+    (call_statement
+      (function_call
+        (variable
+          (identifier))
+        (arguments
+          (string
+            (string_content)))))
+    (call_statement
+      (function_call
+        (variable
+          (identifier))
+        (arguments
+          (table_constructor
+            (field
+              (property_identifier)
+              (number))))))
+    (local_declaration
+      (local_name
+        (identifier))
+      (new_expression
+        (type_identifier)
+        (number)))
+    (local_declaration
+      (local_name
+        (identifier))
+      (variable
+        (dot_index_expression
+          (number)
+          (property_identifier))))
+    (call_statement
+      (function_call
+        (method_index_expression
+          (super)
+          (property_identifier))
+        (arguments)))))
+
+======================================================================
+Types
+======================================================================
+
+local t: { name: string, meta __index: any } = {}
+local f: (number, string) -> (boolean, number)? = nil
+local k: keyof Events | Events["tick"] | number[] | "a" | -1 | ...any = nil
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (local_declaration
+      (local_name
+        (identifier)
+        (type_annotation
+          (table_type
+            (struct_field
+              (property_identifier)
+              (type_identifier))
+            (struct_field
+              (property_identifier)
+              (type_identifier)))))
+      (table_constructor))
+    (local_declaration
+      (local_name
+        (identifier)
+        (type_annotation
+          (function_type
+            (type_identifier)
+            (type_identifier)
+            (optional_type
+              (parenthesized_type
+                (type_identifier)
+                (type_identifier))))))
+      (nil))
+    (local_declaration
+      (local_name
+        (identifier)
+        (type_annotation
+          (union_type
+            (keyof_type
+              (type_identifier))
+            (indexed_access_type
+              (type_identifier)
+              (string
+                (string_content)))
+            (array_type
+              (type_identifier))
+            (string
+              (string_content))
+            (literal_type
+              (number))
+            (variadic_type
+              (type_identifier)))))
+      (nil))))

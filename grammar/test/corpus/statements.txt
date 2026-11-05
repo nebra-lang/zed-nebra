@@ -1,0 +1,267 @@
+======================================================================
+Local declarations with types and attributes
+======================================================================
+
+local mut count: number = 1
+local name <const> = "x"
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (local_declaration
+      (local_name
+        (identifier)
+        (type_annotation
+          (type_identifier)))
+      (number))
+    (local_declaration
+      (local_name
+        (identifier)
+        (attribute
+          (identifier)))
+      (string
+        (string_content)))))
+
+======================================================================
+Control flow
+======================================================================
+
+if a then
+    b()
+elseif c then
+    d()
+else
+    e()
+end
+for i = 1, 10, 2 do end
+for k, v in pairs(t) do end
+while x do break end
+repeat x = x + 1 until x > 3
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (if_statement
+      (variable
+        (identifier))
+      (block
+        (call_statement
+          (function_call
+            (variable
+              (identifier))
+            (arguments))))
+      (elseif_clause
+        (variable
+          (identifier))
+        (block
+          (call_statement
+            (function_call
+              (variable
+                (identifier))
+              (arguments)))))
+      (else_clause
+        (block
+          (call_statement
+            (function_call
+              (variable
+                (identifier))
+              (arguments))))))
+    (for_numeric_statement
+      (identifier)
+      (number)
+      (number)
+      (number))
+    (for_generic_statement
+      (identifier)
+      (identifier)
+      (function_call
+        (variable
+          (identifier))
+        (arguments
+          (variable
+            (identifier)))))
+    (while_statement
+      (variable
+        (identifier))
+      (block
+        (break_statement)))
+    (repeat_statement
+      (block
+        (assignment_statement
+          (variable
+            (identifier))
+          (binary_expression
+            (variable
+              (identifier))
+            (number))))
+      (binary_expression
+        (variable
+          (identifier))
+        (number)))))
+
+======================================================================
+Try, defer and guard
+======================================================================
+
+try
+    risky()
+catch (e)
+    print(e)
+finally
+    done()
+end
+defer close()
+guard ok else return
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (try_statement
+      (block
+        (call_statement
+          (function_call
+            (variable
+              (identifier))
+            (arguments))))
+      (catch_clause
+        (identifier)
+        (block
+          (call_statement
+            (function_call
+              (variable
+                (identifier))
+              (arguments
+                (variable
+                  (identifier)))))))
+      (finally_clause
+        (block
+          (call_statement
+            (function_call
+              (variable
+                (identifier))
+              (arguments))))))
+    (defer_statement
+      (function_call
+        (variable
+          (identifier))
+        (arguments)))
+    (guard_statement
+      (variable
+        (identifier))
+      (variable
+        (identifier)))))
+
+======================================================================
+Match statement and expression
+======================================================================
+
+match value
+    case 1 then print("one")
+    case n: number when n > 1 then print(n)
+end
+local label = match value
+    case 1 then "one"
+end
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (match_statement
+      (variable
+        (identifier))
+      (match_arm
+        (number)
+        (block
+          (call_statement
+            (function_call
+              (variable
+                (identifier))
+              (arguments
+                (string
+                  (string_content)))))))
+      (match_arm
+        (binding_pattern
+          (identifier)
+          (type_annotation
+            (type_identifier)))
+        (binary_expression
+          (variable
+            (identifier))
+          (number))
+        (block
+          (call_statement
+            (function_call
+              (variable
+                (identifier))
+              (arguments
+                (variable
+                  (identifier))))))))
+    (local_declaration
+      (local_name
+        (identifier))
+      (match_expression
+        (variable
+          (identifier))
+        (match_expression_arm
+          (number)
+          (string
+            (string_content)))))))
+
+======================================================================
+Imports and exports
+======================================================================
+
+import { a, b as c } from "mod"
+import type { T } from "types"
+import * as all from "all"
+import "side"
+export function f() end
+export { a } from "mod"
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (import_statement
+      (import_names
+        (import_name
+          (identifier))
+        (import_name
+          (identifier)
+          (identifier)))
+      (identifier)
+      (string
+        (string_content)))
+    (import_statement
+      (identifier)
+      (import_names
+        (import_name
+          (identifier)))
+      (identifier)
+      (string
+        (string_content)))
+    (import_statement
+      (identifier)
+      (identifier)
+      (string
+        (string_content)))
+    (import_statement
+      (string
+        (string_content)))
+    (export_statement
+      (function_declaration
+        (function_name
+          (identifier))
+        (function_body
+          (parameters))))
+    (export_statement
+      (import_names
+        (import_name
+          (identifier)))
+      (identifier)
+      (string
+        (string_content)))))

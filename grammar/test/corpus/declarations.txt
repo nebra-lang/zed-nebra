@@ -1,0 +1,291 @@
+======================================================================
+Classes with members
+======================================================================
+
+@reflectable
+sealed class Box<T> extends Base implements Show, Eq<T>
+    local static count: number = 0
+    value: T
+    constructor(value: T)
+        self.value = value
+    end
+    get size(): number
+        return 1
+    end
+    operator + (other: Box<T>): Box<T>
+        return self
+    end
+    override function show(): string
+        return ""
+    end
+end
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (annotation
+      (identifier))
+    (class_declaration
+      (identifier)
+      (identifier)
+      (type_parameters
+        (type_parameter
+          (type_identifier)))
+      (class_reference
+        (type_identifier))
+      (class_reference
+        (type_identifier))
+      (class_reference
+        (type_identifier)
+        (type_arguments
+          (type_identifier)))
+      (field_declaration
+        (identifier)
+        (type_annotation
+          (type_identifier))
+        (number))
+      (field_declaration
+        (identifier)
+        (type_annotation
+          (type_identifier)))
+      (constructor_declaration
+        (function_body
+          (parameters
+            (parameter
+              (identifier)
+              (type_annotation
+                (type_identifier))))
+          (block
+            (assignment_statement
+              (variable
+                (dot_index_expression
+                  (variable
+                    (identifier))
+                  (property_identifier)))
+              (variable
+                (identifier))))))
+      (accessor_declaration
+        (identifier)
+        (property_identifier)
+        (function_body
+          (parameters)
+          (type_identifier)
+          (block
+            (return_statement
+              (number)))))
+      (operator_declaration
+        (identifier)
+        (operator_symbol)
+        (function_body
+          (parameters
+            (parameter
+              (identifier)
+              (type_annotation
+                (generic_type
+                  (type_identifier)
+                  (type_arguments
+                    (type_identifier))))))
+          (generic_type
+            (type_identifier)
+            (type_arguments
+              (type_identifier)))
+          (block
+            (return_statement
+              (variable
+                (identifier))))))
+      (method_declaration
+        (property_identifier)
+        (function_body
+          (parameters)
+          (type_identifier)
+          (block
+            (return_statement
+              (string))))))))
+
+======================================================================
+Interfaces with signatures, fields and default methods
+======================================================================
+
+interface Events
+    "user:login": (User) -> nil
+    tick: (number) -> nil
+    method name(): string
+    function greet(): string
+        return "hi"
+    end
+end
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (interface_declaration
+      (identifier)
+      (interface_field
+        (string
+          (string_content))
+        (type_annotation
+          (function_type
+            (type_identifier)
+            (nil))))
+      (interface_field
+        (property_identifier)
+        (type_annotation
+          (function_type
+            (type_identifier)
+            (nil))))
+      (interface_method
+        (identifier)
+        (property_identifier)
+        (function_signature
+          (parameters)
+          (type_identifier)))
+      (interface_default_method
+        (property_identifier)
+        (function_body
+          (parameters)
+          (type_identifier)
+          (block
+            (return_statement
+              (string
+                (string_content)))))))))
+
+======================================================================
+Enums and extensions
+======================================================================
+
+enum Color
+    RED
+    GREEN = 2
+end
+extend string
+    function shout(): string
+        return self:upper()
+    end
+end
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (enum_declaration
+      (identifier)
+      (enum_member
+        (identifier))
+      (enum_member
+        (identifier)
+        (number)))
+    (extend_declaration
+      (type_identifier)
+      (method_declaration
+        (property_identifier)
+        (function_body
+          (parameters)
+          (type_identifier)
+          (block
+            (return_statement
+              (function_call
+                (method_index_expression
+                  (variable
+                    (identifier))
+                  (property_identifier))
+                (arguments)))))))))
+
+======================================================================
+Declarations
+======================================================================
+
+declare function print(...: any): nil
+declare _G: { [string]: any }
+declare type Partial<T>
+declare module "nebra:test"
+    function test(name: string, body: () -> nil): nil
+    interface Assertion
+        method toBe(other: any): nil
+    end
+end
+declare class Vector
+    x: number
+    constructor(x: number)
+    function length(): number
+end
+
+----------------------------------------------------------------------
+
+(source_file
+  (block
+    (declare_statement
+      (declare_function
+        (function_name
+          (identifier))
+        (function_signature
+          (parameters
+            (vararg_parameter
+              (type_annotation
+                (type_identifier))))
+          (nil))))
+    (declare_statement
+      (declare_variable
+        (identifier)
+        (type_annotation
+          (table_type
+            (type_identifier)
+            (type_identifier)))))
+    (declare_statement
+      (declare_type
+        (identifier)
+        (identifier)
+        (type_parameters
+          (type_parameter
+            (type_identifier)))))
+    (declare_statement
+      (declare_module
+        (string
+          (string_content))
+        (declare_function
+          (function_name
+            (identifier))
+          (function_signature
+            (parameters
+              (parameter
+                (identifier)
+                (type_annotation
+                  (type_identifier)))
+              (parameter
+                (identifier)
+                (type_annotation
+                  (function_type
+                    (nil)))))
+            (nil)))
+        (declare_interface
+          (identifier)
+          (interface_method
+            (identifier)
+            (property_identifier)
+            (function_signature
+              (parameters
+                (parameter
+                  (identifier)
+                  (type_annotation
+                    (type_identifier))))
+              (nil))))))
+    (declare_statement
+      (declare_class
+        (identifier)
+        (declare_field
+          (identifier)
+          (type_annotation
+            (type_identifier)))
+        (declare_constructor
+          (function_signature
+            (parameters
+              (parameter
+                (identifier)
+                (type_annotation
+                  (type_identifier))))))
+        (declare_method
+          (property_identifier)
+          (function_signature
+            (parameters)
+            (type_identifier)))))))

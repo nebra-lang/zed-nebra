@@ -15,7 +15,7 @@ listed there, install it from a checkout of this repository with `zed: install d
 
 The extension starts `nebra lps`. It uses, in this order:
 
-1. the path set in `lsp.nebra.binary.path`
+1. the path set in `lsp.nebra.binary.path`, started with `lsp.nebra.binary.arguments`, which must then be `["lps"]`
 2. `nebra` on your `PATH`
 3. the latest release of [nebra-lang/nebra](https://github.com/nebra-lang/nebra/releases), downloaded for Linux (x64, arm64), macOS (arm64) and Windows (x64, arm64)
 
@@ -29,7 +29,8 @@ as in the VS Code extension:
   "lsp": {
     "nebra": {
       "binary": {
-        "path": "/opt/nebra/bin/nebra"
+        "path": "/opt/nebra/bin/nebra",
+        "arguments": ["lps"]
       },
       "settings": {
         "inlayHints": {

@@ -4,13 +4,14 @@ Language support for [Nebra](https://nebra-lang.github.io), the typed superset o
 
 - Syntax highlighting, brackets, indentation, outline and text objects from a tree-sitter grammar
 - The Nebra language server: diagnostics, hover, completion, signature help, go to definition,
-  references, rename, inlay hints, code actions and formatting of `.neb` and `.d.neb` files
+  references, rename, inlay hints and code actions in `.neb` and `.d.neb` files
 - Run buttons next to `test(...)`, `it(...)` and `describe(...)` of `nebra:test`
 - Tasks for `nebra build`, `run`, `test`, `watch`, `install`, `compile` and `docs`
 
 ## Installation
 
-Open the extensions with `zed: extensions`, search for **Nebra** and install it.
+Open the extensions with `zed: extensions`, search for **Nebra** and install it. Until the extension is
+listed there, install it from a checkout of this repository with `zed: install dev extension`.
 
 The extension starts `nebra lps`. It uses, in this order:
 

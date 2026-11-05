@@ -1,0 +1,19 @@
+id = "nebra"
+name = "Nebra"
+version = "0.1.0"
+schema_version = 1
+authors = ["DasDarki"]
+description = "Nebra language support: syntax highlighting, the Nebra language server and tasks."
+repository = "https://github.com/nebra-lang/zed-nebra"
+
+[language_servers.nebra]
+name = "Nebra Language Server"
+languages = ["Nebra"]
+
+[language_servers.nebra.language_ids]
+"Nebra" = "nebra"
+
+[grammars.nebra]
+repository = "https://github.com/nebra-lang/zed-nebra"
+rev = "7e1048744c2bba76e47a08f204f28a240a5073d0"
+path = "grammar"

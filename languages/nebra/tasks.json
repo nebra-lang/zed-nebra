@@ -1,0 +1,57 @@
+[
+  {
+    "label": "nebra test: $ZED_CUSTOM_test_name",
+    "command": "nebra",
+    "args": ["test", "$ZED_FILE", "$ZED_CUSTOM_test_name"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["nebra-test", "nebra-suite"]
+  },
+  {
+    "label": "nebra test: $ZED_FILENAME",
+    "command": "nebra",
+    "args": ["test", "$ZED_FILE"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "nebra build",
+    "command": "nebra",
+    "args": ["build"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "nebra run",
+    "command": "nebra",
+    "args": ["run"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "nebra test",
+    "command": "nebra",
+    "args": ["test"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "nebra watch",
+    "command": "nebra",
+    "args": ["watch"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "nebra install",
+    "command": "nebra",
+    "args": ["install"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "nebra compile",
+    "command": "nebra",
+    "args": ["compile"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "nebra docs",
+    "command": "nebra",
+    "args": ["docs"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  }
+]

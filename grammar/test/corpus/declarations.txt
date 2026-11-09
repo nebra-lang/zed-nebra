@@ -289,3 +289,53 @@ end
           (function_signature
             (parameters)
             (type_identifier)))))))
+
+================================================================================
+Contract
+================================================================================
+
+contract Player
+  @range(0, 150)
+  age: number
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (block
+    (interface_declaration
+      keyword: (identifier)
+      name: (identifier)
+      (annotation
+        name: (identifier)
+        (annotation_argument
+          (number))
+        (annotation_argument
+          (number)))
+      (interface_field
+        name: (property_identifier)
+        (type_annotation
+          type: (type_identifier))))))
+
+================================================================================
+Contract as a name
+================================================================================
+
+local contract = 1
+contract("x")
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (block
+    (local_declaration
+      names: (local_name
+        name: (identifier))
+      values: (number))
+    (call_statement
+      (function_call
+        name: (variable
+          (identifier))
+        arguments: (arguments
+          (string
+            (string_content)))))))

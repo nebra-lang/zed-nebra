@@ -42,6 +42,7 @@ module.exports = grammar({
   supertypes: ($) => [$.statement, $.expression],
 
   conflicts: ($) => [
+    [$.declare_type, $.declare_interface],
     [$._default_method_body, $.function_signature],
     [$.type_parameter],
     [$.binding_pattern, $.variable],
@@ -331,7 +332,7 @@ module.exports = grammar({
 
     interface_declaration: ($) =>
       seq(
-        'interface',
+        choice('interface', field('keyword', $.identifier)),
         field('name', $.identifier),
         optional(field('type_parameters', $.type_parameters)),
         optional(seq('extends', commaSep1(field('interface', $.class_reference)))),
@@ -480,7 +481,7 @@ module.exports = grammar({
 
     declare_interface: ($) =>
       seq(
-        'interface',
+        choice('interface', field('keyword', $.identifier)),
         field('name', $.identifier),
         optional(field('type_parameters', $.type_parameters)),
         optional(seq('extends', commaSep1(field('interface', $.class_reference)))),

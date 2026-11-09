@@ -2453,8 +2453,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "interface"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "interface"
+            },
+            {
+              "type": "FIELD",
+              "name": "keyword",
+              "content": {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            }
+          ]
         },
         {
           "type": "FIELD",
@@ -3736,8 +3749,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "interface"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "interface"
+            },
+            {
+              "type": "FIELD",
+              "name": "keyword",
+              "content": {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            }
+          ]
         },
         {
           "type": "FIELD",
@@ -7219,6 +7245,10 @@
     }
   ],
   "conflicts": [
+    [
+      "declare_type",
+      "declare_interface"
+    ],
     [
       "_default_method_body",
       "function_signature"

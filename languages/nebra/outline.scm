@@ -15,6 +15,10 @@
   "interface" @context
   name: (_) @name) @item
 
+(interface_declaration
+  keyword: (identifier) @context
+  name: (_) @name) @item
+
 (enum_declaration
   "enum" @context
   name: (_) @name) @item
@@ -77,6 +81,10 @@
 
 (declare_interface
   "interface" @context
+  name: (_) @name) @item
+
+(declare_interface
+  keyword: (identifier) @context
   name: (_) @name) @item
 
 (declare_enum

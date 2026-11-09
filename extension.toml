@@ -15,5 +15,5 @@ languages = ["Nebra"]
 
 [grammars.nebra]
 repository = "https://github.com/nebra-lang/zed-nebra"
-rev = "6784d343092bf9739e574ab12ff400727e9c76ac"
+rev = "ab369dbac94dd3426bd57850c29956329506215a"
 path = "grammar"

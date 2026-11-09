@@ -122,6 +122,7 @@
 (declare_field name: (identifier) @property)
 
 (parameter name: (identifier) @variable.parameter)
+(function_type_parameter name: (identifier) @variable.parameter)
 (vararg_parameter name: (identifier) @variable.parameter)
 (type_predicate parameter: (identifier) @variable.parameter)
 (binding_pattern name: (identifier) @variable)

@@ -580,7 +580,9 @@ module.exports = grammar({
 
     generic_type: ($) => seq(alias($.identifier, $.type_identifier), $.type_arguments),
 
-    function_type: ($) => prec.right(seq('(', commaSep($._type), ')', '->', field('return_type', $._type))),
+    function_type: ($) => prec.right(seq('(', commaSep(choice($._type, $.function_type_parameter)), ')', '->', field('return_type', $._type))),
+
+    function_type_parameter: ($) => seq(field('name', $.identifier), ':', field('type', $._type)),
 
     parenthesized_type: ($) => seq('(', commaSep1($._type), ')'),
 
